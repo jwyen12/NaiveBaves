@@ -22,9 +22,31 @@ class DataLoader:
         return cleanTokenizedText
 
 
-    def load_data():
-        print('hey')
+    @staticmethod
+    def convert_ham_or_spam(canidate):
+        if canidate == 'ham':
+            return 0
+        if canidate == 'spam':
+            return 1
+        else:
+            print("Incorrect identifier")
+            exit(1)
 
 
+    @staticmethod
+    def load_data(filepath):
+        x = []
+        y = []
+        i = 0
+        with open(filepath) as file:
+            for line in file:
+                cleanTokenizedText = DataLoader.preprocess(line)
+                label = DataLoader.convert_ham_or_spam(cleanTokenizedText[0])
+
+                y[i] = label
+                cleanTokenizedText.pop(0)
+                x[i] = cleanTokenizedText
+
+        
     def split_data():
         print('hey')

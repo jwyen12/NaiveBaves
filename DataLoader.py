@@ -46,7 +46,11 @@ class DataLoader:
                 y[i] = label
                 cleanTokenizedText.pop(0)
                 x[i] = cleanTokenizedText
+                i += 1
+
+        return x,y
 
         
-    def split_data():
-        print('hey')
+    def split_data(x, y, test_ratio=0.2):
+        x_train, x_test, y_train, y_test = sklearn.train_test_split(x, y, test_size=test_ratio)
+        return x_train, x_test, y_train, y_test

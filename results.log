@@ -7,20 +7,20 @@ Naive Bayes Spam — Results Log
 
 --- Training Metrics ---
   Accuracy  : 98.74%
-  Precision : 95.74%
+  Precision : 95.87%
   Recall    : 0.95
   F1 Score  : 0.95
-  TP : 584
-  TN : 3819
-  FP : 26
-  FN : 30
+  TP : 580
+  TN : 3823
+  FP : 25
+  FN : 31
 
 --- Testing Metrics ---
   Accuracy  : 98.92%
-  Precision : 96.90%
-  Recall    : 0.94
+  Precision : 97.69%
+  Recall    : 0.93
   F1 Score  : 0.95
-  TP : 125
-  TN : 978
-  FP : 4
-  FN : 8
+  TP : 127
+  TN : 976
+  FP : 3
+  FN : 9

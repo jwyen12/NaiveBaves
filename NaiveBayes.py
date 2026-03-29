@@ -51,8 +51,6 @@ class NaiveBayes:
                     ham += self.ham_word_probability[word]
                     spam += self.spam_word_probability[word]
 
-                #ham += self.ham_word_probability.get(word, self.default_ham_log_prob)
-                #spam += self.spam_word_probability.get(word, self.default_spam_log_prob)
             
             if ham > spam:
                 results.append(0)
@@ -60,3 +58,4 @@ class NaiveBayes:
                 results.append(1)
 
         return results
+    

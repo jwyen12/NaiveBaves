@@ -16,7 +16,7 @@ def main():
     testMetrics = EvaluationMetrics.compute_metrics(testResults, y_test)
     trainingMetrics = EvaluationMetrics.compute_metrics(trainingResults, y_train)
     
-    
+
     output = [
         "Naive Bayes Spam — Results Log",
 
@@ -45,11 +45,13 @@ def main():
         f"  FP : {testMetrics["FP"]}",
         f"  FN : {testMetrics["FN"]}",
     ]
+
     output = "\n".join(output)
     print(output)
 
     with open("results.log", "w") as file:
         file.write(output)
+
 
 if __name__ == "__main__":
     main()

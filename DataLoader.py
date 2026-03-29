@@ -1,7 +1,6 @@
-from nltk.stem import WordNetLemmatizer, PorterStemmer
+from nltk.stem import PorterStemmer
 import random
 import re
-from nltk.tokenize import word_tokenize
 
 class DataLoader:
 
@@ -46,6 +45,7 @@ class DataLoader:
 
         return x,y
 
+
     @staticmethod
     def split_data(x, y, test_ratio=0.2):
         # Combine x and y so they stay aligned
@@ -66,3 +66,4 @@ class DataLoader:
         x_test, y_test = zip(*test_data)
         
         return list(x_train), list(x_test), list(y_train), list(y_test)
+    

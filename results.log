@@ -1,0 +1,26 @@
+Naive Bayes Spam — Results Log
+
+--- Dataset ---
+  Total samples    : 5574
+  Training samples : 4459
+  Testing samples  : 1115
+
+--- Training Metrics ---
+  Accuracy  : 98.74%
+  Precision : 95.74%
+  Recall    : 0.95
+  F1 Score  : 0.95
+  TP : 584
+  TN : 3819
+  FP : 26
+  FN : 30
+
+--- Testing Metrics ---
+  Accuracy  : 98.92%
+  Precision : 96.90%
+  Recall    : 0.94
+  F1 Score  : 0.95
+  TP : 125
+  TN : 978
+  FP : 4
+  FN : 8

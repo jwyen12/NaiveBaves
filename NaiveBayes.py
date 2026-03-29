@@ -22,14 +22,16 @@ class NaiveBayes:
         self.log_prior_ham = math.log(num_of_ham_lines/len(y_train))
         self.log_prior_spam = math.log(num_of_spam_lines/len(y_train))
 
-        for word, tag in zip(x_train, y_train):
-            self.vocabulary.add(word)
+        for line, tag in zip(x_train, y_train):
+            for word in line:
+                self.vocabulary.add(word)
 
-            if tag == 0:
-                self.ham_word_counts[word] +=1
-            else:
-                self.spam_word_counts[word] +=1
+                if tag == 0:
+                    self.ham_word_counts[word] +=1
+                else:
+                    self.spam_word_counts[word] +=1
         
+
         vocab_size = len(self.vocabulary)
 
         for word in self.vocabulary:

@@ -1,8 +1,6 @@
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-import sklearn
+import random
 import re
-import numpy as np
-import nltk
 from nltk.tokenize import word_tokenize
 
 class DataLoader:
@@ -11,22 +9,22 @@ class DataLoader:
     @staticmethod
     def preprocess(text):
         cleanText = re.sub(r'[^a-zA-Z\s]', '', text.lower())
-        tokenizedText = word_tokenize(cleanText)
+        tokenizedText = cleanText.split()
         cleanTokenizedText = []
+        stemmer = PorterStemmer()
 
         for word in tokenizedText:
-            cleanWord = WordNetLemmatizer.lemmatize(word)
-            cleanWord = WordNetLemmatizer.stem(cleanWord)
+            cleanWord = stemmer.stem(word)
             cleanTokenizedText.append(cleanWord)
             
         return cleanTokenizedText
 
 
     @staticmethod
-    def convert_ham_or_spam(canidate):
-        if canidate == 'ham':
+    def convert_ham_or_spam(candidate):
+        if candidate == 'ham':
             return 0
-        if canidate == 'spam':
+        if candidate == 'spam':
             return 1
         else:
             print("Incorrect identifier")
@@ -37,20 +35,34 @@ class DataLoader:
     def load_data(filepath):
         x = []
         y = []
-        i = 0
         with open(filepath) as file:
             for line in file:
                 cleanTokenizedText = DataLoader.preprocess(line)
                 label = DataLoader.convert_ham_or_spam(cleanTokenizedText[0])
 
-                y[i] = label
+                y.append(label)
                 cleanTokenizedText.pop(0)
-                x[i] = cleanTokenizedText
-                i += 1
+                x.append(cleanTokenizedText)
 
         return x,y
 
-        
+    @staticmethod
     def split_data(x, y, test_ratio=0.2):
-        x_train, x_test, y_train, y_test = sklearn.train_test_split(x, y, test_size=test_ratio)
-        return x_train, x_test, y_train, y_test
+        # Combine x and y so they stay aligned
+        data = list(zip(x, y))
+        
+        # Shuffle the data
+        random.shuffle(data)
+        
+        # Split index
+        split_index = int(len(data) * (1 - test_ratio))
+        
+        # Split data
+        train_data = data[:split_index]
+        test_data = data[split_index:]
+        
+        # Unzip back into x and y
+        x_train, y_train = zip(*train_data)
+        x_test, y_test = zip(*test_data)
+        
+        return list(x_train), list(x_test), list(y_train), list(y_test)

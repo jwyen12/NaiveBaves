@@ -2,7 +2,10 @@ class EvaluationMetrics:
 
     @staticmethod
     def compute_metrics(results, y_test):
-        TP, FP, TN, FN = 0
+        TP = 0
+        FP = 0
+        TN = 0
+        FN = 0
 
         for result, answer in zip(results, y_test):
             if result == 0:
@@ -20,9 +23,9 @@ class EvaluationMetrics:
 
         precision = TP / (TP+FP) if(TP+FP) > 0 else 0
 
-        recall = TP / TP+FN if(TP+FN) > 0 else 0
+        recall = TP / (TP+FN) if(TP+FN) > 0 else 0
 
-        F1 = 2 * (precision * recall) / (precision + recall)
+        F1 = 2 * ((precision * recall) / (precision + recall))
 
         return {
             "TP":        TP,
@@ -32,5 +35,5 @@ class EvaluationMetrics:
             "accuracy":  accuracy,
             "precision": precision,
             "recall":    recall,
-            "f1":        F1,
+            "F1":        F1,
         }

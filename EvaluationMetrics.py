@@ -1,12 +1,15 @@
 class EvaluationMetrics:
 
     @staticmethod
+    #Computes all result metrics
+    #Args: results list returned from predict() and the y_test which is the key
     def compute_metrics(results, y_test):
         TP = 0
         FP = 0
         TN = 0
         FN = 0
 
+        #iterates the prediction and answer together and compares
         for result, answer in zip(results, y_test):
             if result == 0:
                 if result != answer:
@@ -27,6 +30,7 @@ class EvaluationMetrics:
 
         F1 = 2 * ((precision * recall) / (precision + recall))
 
+        #returns a dictonary with all values
         return {
             "TP":        TP,
             "TN":        TN,
